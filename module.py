@@ -10,7 +10,7 @@ print(random.random())
 print(random.normalvariate(0, 1)) """
 
 # 모듈화
-""" import mod.utils as mu
+"""import mod.utils as mu
 
 my_list = ["apple", "banana", "cherry"]
 print(mu.rd_int(1, 100))
