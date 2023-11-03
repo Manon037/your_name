@@ -311,3 +311,10 @@ print(p1.getName())
 print(p1.getNumber())
 print(p2.getNumber())
  """
+ 
+""" import calc as cm
+
+#print(cm.Calc.add(1, 2))
+cl = cm.Calc()
+
+print(cl.add(1, 2)) """
