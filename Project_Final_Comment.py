@@ -6,6 +6,7 @@ import time
 
 # 음악 자판기
 def music_vending_machine():
+    # 음료와 연관된 음악 목록
     drinks = {
         "칠성사이다": ["青と夏 (Mrs. GREEN APPLE)", "怪獣の花唄 (VAUNDY)", "虹を編めたら (fhána)", "Universe (Official髭男dism)", "Grand Escape (RADWIMPS feat. 三浦透子)"],
         "칸타타 커피": ["merry-go-round (優里)", "たぶん (YOASOBI)", "フィナーレ (eill)", "W/X/Y (たにゆうき)", "NEKO (DISH//)"],
@@ -21,11 +22,13 @@ def music_vending_machine():
     print("                        ")
     for index, drink in enumerate(drinks.keys(), start=1):
         print(f"{index}. {drink}")
-    
+        
+    # 사용자에게 보여줄 음료 목록
     while True:
         print("                        ")
         chosen_drink = input("마음에 드는 음료의 번호를 입력해주세요! (1-5): ")
         
+        # 사용자가 선택한 음료에 해당하는 음악 추천하는 기능
         if chosen_drink.isdigit():
             drink_index = int(chosen_drink)
             if 1 <= drink_index <= len(drinks):
@@ -41,9 +44,12 @@ def music_vending_machine():
         else:
             print("Invalid input. Please enter a number or 'r' to refresh.")
 
-
 # 오늘의 날씨
+# OpenWeatherMap API를 이용하여 날씨 정보 가져오기
+# 정보를 받아올 수 있으면 날씨 데이터 반환, 받아오지 못하면 None 반환
 apiKey = "9f86204ec43f8634cddd428b5049c79b"
+
+
 songs = {
     "Clear": ["ふわり春（あさぎーにょ）", "ロマンチシズム(Mrs. GREEN APPLE)", "もう少しだけ(YOASOBI)", "葵(あいみょん)", "サラバ(SEKAI NO OWARI)"],
     "Mist": ["LADY(米津玄師)", "奏（スキマスイッチ）", "Answer(幾田りら)", "喜劇（星野源）", "レオ（優里）"],
@@ -73,6 +79,8 @@ def recommend_song(weather):
         return "No recommendation"
 
 def today_weather():
+    # 사용자 도시의 날씨 정보 가져오기
+    # 날씨 정보 보여주고, 그에 맞는 음악 추천
     print("------------------------------------------------------------------------------------------")
     print("오늘의 날씨를 선택해주셔서 감사합니다!")
     print("------------------------------------------------------------------------------------------")
@@ -100,8 +108,9 @@ def today_weather():
     else:
         print("날씨 정보를 불러오는 데 실패했습니다.")
 
-
 # 슬롯 머신
+# 슬롯 머신 번호에 따른 음악 추천
+# CSV 파일에서 번호에 맞는 음악 추천
 def recommend_song_from_number(number):
     songs = {}
     with open('/Users/hwangjeong-a/Documents/python/lect/your_name/data/Slot_Machine_List.csv', newline='', encoding='utf-8') as csvfile:
@@ -112,6 +121,8 @@ def recommend_song_from_number(number):
     return songs.get(number, "No song recommendation for this number")
 
 def slot_machine():
+    # 슬롯 머신 게임 시뮬레이션 및 번호에 따른 음악 추천
+    # 사용자가 다시 게임할지 종료할지 선택 가능
     print("------------------------------------------------------------------------------------------")
     print("슬롯 머신을 선택해주셔서 감사합니다!")
 
@@ -119,7 +130,7 @@ def slot_machine():
         print("------------------------------------------------------------------------------------------")
         input("슬롯을 돌리시려면 Enter를 눌러주세요...")
         time.sleep(time_delay)
-        generated_number = random.randint(1, 30)
+        generated_number = random.randint(1, 30) 
         print(f"슬롯 번호: ({generated_number})")
 
         recommended_song = recommend_song_from_number(generated_number)
@@ -132,8 +143,9 @@ def slot_machine():
             print("------------------------------------------------------------------------------------------")
             break
 
-
 # 일본 음악 퀴즈
+# 사용자가 일본 음악 가사 기반 퀴즈를 플레이할 수 있도록 함
+# 퀴즈 데이터 로드, 가사 보여주기, 옵션 생성, 퀴즈 진행 등
 lyrics_dict = {}
 
 def load_quiz_data():
@@ -179,7 +191,6 @@ def japanese_music_quiz():
             
             print("                        ")
             print("------------------------------------------------------------------------------------------")
-            print("                        ")
             print(f"[한국어 번역 가사: {lyrics_dict[chosen_song]['Korean']}]")
             print("------------------------------------------------------------------------------------------")
             print("다음 중 제시된 가사의 곡을 선택해주세요:")
@@ -216,7 +227,11 @@ def japanese_music_quiz():
 
     
 # 메인
+# 사용자에게 프로그램 옵션 제공 및 선택 실행
+# 선택에 따라 해당하는 기능 실행
+# 각 작업 후 사용자에게 계속할지 종료할지 묻기
 def main():
+    time.sleep(time_delay)
     print("==========================================================================================")
     print("Japanese Music Recommendation Program(JMP)를 선택해주셔서 감사합니다!")
     while True:
@@ -246,6 +261,7 @@ def main():
             print("==========================================================================================")
             break
 
+# 메시지 표시 간격 설정
 time_delay = 2
 
 if __name__ == "__main__":
